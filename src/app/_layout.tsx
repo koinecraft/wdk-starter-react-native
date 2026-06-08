@@ -9,8 +9,11 @@ import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import getChainsConfig from '@/config/get-chains-config';
+import { applyWdkServiceTimeoutPatch } from '@/services/wdk-service-timeout-patch';
 import { Toaster } from 'sonner-native';
 import { colors } from '@/constants/colors';
+
+applyWdkServiceTimeoutPatch();
 
 SplashScreen.preventAutoHideAsync();
 
