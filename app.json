@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "wdk-starter-react-native",
-    "slug": "wdk-starter-react-native",
+    "name": "koine-wallet",
+    "slug": "koine-wallet",
     "version": "1.0.0",
     "orientation": "portrait",
     "developmentClient": false,
