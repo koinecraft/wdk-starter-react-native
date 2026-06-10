@@ -175,7 +175,7 @@ Or install manually:
 
 ```bash
 adb install -r android/app/build/outputs/apk/release/app-release.apk
-adb shell am start -n com.anonymous.wdkstarterreactnative/com.anonymous.wdkstarterreactnative.MainActivity
+adb shell am start -n com.lcfx.koine.wdkstarterreactnative/com.lcfx.koine.wdkstarterreactnative.MainActivity
 ```
 
 ---

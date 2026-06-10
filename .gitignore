@@ -42,6 +42,7 @@ app-example
 # generated native folders
 /ios
 /android
+.bare-addon-cache
 
 .env
 .npmrc
