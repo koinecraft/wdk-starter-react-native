@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../wdk-react-native-core"
+		}
+	],
+	"settings": {}
+}
