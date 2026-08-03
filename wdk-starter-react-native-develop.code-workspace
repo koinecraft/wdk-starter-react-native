@@ -5,6 +5,15 @@
 		},
 		{
 			"path": "../wdk-react-native-core"
+		},
+		{
+			"path": "../pear-wrk-wdk"
+		},
+		{
+			"path": "../wdk-wallet-btc"
+		},
+		{
+			"path": "../react-native-bare-kit"
 		}
 	],
 	"settings": {}

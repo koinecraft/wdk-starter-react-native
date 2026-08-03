@@ -1,0 +1,369 @@
+{
+  "platform": "android",
+  "generatedAt": "2026-08-03T16:37:39.235Z",
+  "addons": [
+    {
+      "name": "@buildonspark/spark-frost-bare-addon",
+      "version": "0.0.5",
+      "file": "libbuildonspark__spark-frost-bare-addon.0.0.5.so"
+    },
+    {
+      "name": "bare-abort",
+      "version": "2.0.13",
+      "file": "libbare-abort.2.0.13.so"
+    },
+    {
+      "name": "bare-broadcast-channel",
+      "version": "0.2.0",
+      "file": "libbare-broadcast-channel.0.2.0.so"
+    },
+    {
+      "name": "bare-buffer",
+      "version": "3.6.2",
+      "file": "libbare-buffer.3.6.2.so"
+    },
+    {
+      "name": "bare-channel",
+      "version": "5.2.4",
+      "file": "libbare-channel.5.2.4.so"
+    },
+    {
+      "name": "bare-crypto",
+      "version": "1.12.0",
+      "file": "libbare-crypto.1.12.0.so"
+    },
+    {
+      "name": "bare-dns",
+      "version": "2.1.4",
+      "file": "libbare-dns.2.1.4.so"
+    },
+    {
+      "name": "bare-fs",
+      "version": "4.8.0",
+      "file": "libbare-fs.4.8.0.so"
+    },
+    {
+      "name": "bare-hrtime",
+      "version": "2.1.1",
+      "file": "libbare-hrtime.2.1.1.so"
+    },
+    {
+      "name": "bare-inspect",
+      "version": "3.1.4",
+      "file": "libbare-inspect.3.1.4.so"
+    },
+    {
+      "name": "bare-inspector",
+      "version": "6.1.0",
+      "file": "libbare-inspector.6.1.0.so"
+    },
+    {
+      "name": "bare-lief",
+      "version": "0.1.6",
+      "file": "libbare-lief.0.1.6.so"
+    },
+    {
+      "name": "bare-logger",
+      "version": "2.0.3",
+      "file": "libbare-logger.2.0.3.so"
+    },
+    {
+      "name": "bare-module",
+      "version": "6.4.0",
+      "file": "libbare-module.6.4.0.so"
+    },
+    {
+      "name": "bare-module-lexer",
+      "version": "1.6.3",
+      "file": "libbare-module-lexer.1.6.3.so"
+    },
+    {
+      "name": "bare-os",
+      "version": "3.9.3",
+      "file": "libbare-os.3.9.3.so"
+    },
+    {
+      "name": "bare-path",
+      "version": "3.1.1",
+      "file": "libbare-path.3.1.1.so"
+    },
+    {
+      "name": "bare-performance",
+      "version": "2.1.1",
+      "file": "libbare-performance.2.1.1.so"
+    },
+    {
+      "name": "bare-pipe",
+      "version": "4.2.3",
+      "file": "libbare-pipe.4.2.3.so"
+    },
+    {
+      "name": "bare-posix",
+      "version": "1.0.1",
+      "file": "libbare-posix.1.0.1.so"
+    },
+    {
+      "name": "bare-realm",
+      "version": "2.0.1",
+      "file": "libbare-realm.2.0.1.so"
+    },
+    {
+      "name": "bare-repl",
+      "version": "6.1.1",
+      "file": "libbare-repl.6.1.1.so"
+    },
+    {
+      "name": "bare-signals",
+      "version": "5.0.0",
+      "file": "libbare-signals.5.0.0.so"
+    },
+    {
+      "name": "bare-sqlite",
+      "version": "0.1.4",
+      "file": "libbare-sqlite.0.1.4.so"
+    },
+    {
+      "name": "bare-stdio",
+      "version": "1.0.3",
+      "file": "libbare-stdio.1.0.3.so"
+    },
+    {
+      "name": "bare-structured-clone",
+      "version": "1.6.0",
+      "file": "libbare-structured-clone.1.6.0.so"
+    },
+    {
+      "name": "bare-subprocess",
+      "version": "6.1.0",
+      "file": "libbare-subprocess.6.1.0.so"
+    },
+    {
+      "name": "bare-subprocess",
+      "version": "5.2.3",
+      "file": "libbare-subprocess.5.2.3.so"
+    },
+    {
+      "name": "bare-system-logger",
+      "version": "1.0.3",
+      "file": "libbare-system-logger.1.0.3.so"
+    },
+    {
+      "name": "bare-tcp",
+      "version": "2.5.3",
+      "file": "libbare-tcp.2.5.3.so"
+    },
+    {
+      "name": "bare-thread",
+      "version": "1.2.4",
+      "file": "libbare-thread.1.2.4.so"
+    },
+    {
+      "name": "bare-timers",
+      "version": "3.2.1",
+      "file": "libbare-timers.3.2.1.so"
+    },
+    {
+      "name": "bare-tls",
+      "version": "3.1.8",
+      "file": "libbare-tls.3.1.8.so"
+    },
+    {
+      "name": "bare-tty",
+      "version": "5.1.2",
+      "file": "libbare-tty.5.1.2.so"
+    },
+    {
+      "name": "bare-type",
+      "version": "1.1.0",
+      "file": "libbare-type.1.1.0.so"
+    },
+    {
+      "name": "bare-type-stripper",
+      "version": "0.1.4",
+      "file": "libbare-type-stripper.0.1.4.so"
+    },
+    {
+      "name": "bare-url",
+      "version": "2.4.7",
+      "file": "libbare-url.2.4.7.so"
+    },
+    {
+      "name": "bare-v8",
+      "version": "1.0.1",
+      "file": "libbare-v8.1.0.1.so"
+    },
+    {
+      "name": "bare-zlib",
+      "version": "1.4.1",
+      "file": "libbare-zlib.1.4.1.so"
+    },
+    {
+      "name": "sodium-native",
+      "version": "5.1.0",
+      "file": "libsodium-native.5.1.0.so"
+    },
+    {
+      "name": "udx-native",
+      "version": "1.20.7",
+      "file": "libudx-native.1.20.7.so"
+    }
+  ],
+  "files": [
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbuildonspark__spark-frost-bare-addon.0.0.5.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbuildonspark__spark-frost-bare-addon.0.0.5.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbuildonspark__spark-frost-bare-addon.0.0.5.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbuildonspark__spark-frost-bare-addon.0.0.5.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-abort.2.0.13.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-abort.2.0.13.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-abort.2.0.13.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-abort.2.0.13.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-broadcast-channel.0.2.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-broadcast-channel.0.2.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-broadcast-channel.0.2.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-broadcast-channel.0.2.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-buffer.3.6.2.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-buffer.3.6.2.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-buffer.3.6.2.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-buffer.3.6.2.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-channel.5.2.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-channel.5.2.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-channel.5.2.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-channel.5.2.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-crypto.1.12.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-crypto.1.12.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-crypto.1.12.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-crypto.1.12.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-dns.2.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-dns.2.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-dns.2.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-dns.2.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-fs.4.8.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-fs.4.8.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-fs.4.8.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-fs.4.8.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-hrtime.2.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-hrtime.2.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-hrtime.2.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-hrtime.2.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-inspect.3.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-inspect.3.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-inspect.3.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-inspect.3.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-inspector.6.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-inspector.6.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-inspector.6.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-inspector.6.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-logger.2.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-logger.2.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-logger.2.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-logger.2.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-module.6.4.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-module.6.4.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-module.6.4.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-module.6.4.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-module-lexer.1.6.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-module-lexer.1.6.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-module-lexer.1.6.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-module-lexer.1.6.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-os.3.9.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-os.3.9.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-os.3.9.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-os.3.9.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-path.3.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-path.3.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-path.3.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-path.3.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-performance.2.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-performance.2.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-performance.2.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-performance.2.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-pipe.4.2.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-pipe.4.2.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-pipe.4.2.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-pipe.4.2.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-realm.2.0.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-realm.2.0.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-realm.2.0.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-realm.2.0.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-repl.6.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-repl.6.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-repl.6.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-repl.6.1.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-signals.5.0.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-signals.5.0.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-signals.5.0.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-signals.5.0.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-sqlite.0.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-sqlite.0.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-sqlite.0.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-sqlite.0.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-stdio.1.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-stdio.1.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-stdio.1.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-stdio.1.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-structured-clone.1.6.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-structured-clone.1.6.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-structured-clone.1.6.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-structured-clone.1.6.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-subprocess.6.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-subprocess.6.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-subprocess.6.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-subprocess.6.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-subprocess.5.2.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-subprocess.5.2.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-subprocess.5.2.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-subprocess.5.2.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-system-logger.1.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-system-logger.1.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-system-logger.1.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-system-logger.1.0.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-tcp.2.5.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-tcp.2.5.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-tcp.2.5.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-tcp.2.5.3.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-thread.1.2.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-thread.1.2.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-thread.1.2.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-thread.1.2.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-timers.3.2.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-timers.3.2.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-timers.3.2.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-timers.3.2.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-tls.3.1.8.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-tls.3.1.8.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-tls.3.1.8.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-tls.3.1.8.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-tty.5.1.2.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-tty.5.1.2.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-tty.5.1.2.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-tty.5.1.2.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-type.1.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-type.1.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-type.1.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-type.1.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-type-stripper.0.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-type-stripper.0.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-type-stripper.0.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-type-stripper.0.1.4.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-url.2.4.7.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-url.2.4.7.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-url.2.4.7.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-url.2.4.7.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-v8.1.0.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-v8.1.0.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-v8.1.0.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-v8.1.0.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-zlib.1.4.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-zlib.1.4.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-zlib.1.4.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbare-zlib.1.4.1.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libsodium-native.5.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libsodium-native.5.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libsodium-native.5.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libsodium-native.5.1.0.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libudx-native.1.20.7.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libudx-native.1.20.7.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libudx-native.1.20.7.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libudx-native.1.20.7.so"
+  ]
+}

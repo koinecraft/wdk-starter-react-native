@@ -1,0 +1,136 @@
+---
+description: Fix and republish @spacesops/WDK dependencies; clean npm ci release steps
+alwaysApply: true
+---
+
+# Upstream dependencies first
+
+This repo is an **integration starter**. Behavior that belongs in the WDK stack should be implemented in the owning package, **published to npm**, and consumed here via version bumps—not duplicated in this project.
+
+## Default approach
+
+1. **Identify the owner** of the bug or gap (typical chain, bottom-up):
+   - `@spacesops/wdk-wallet-btc` — BTC wallet / bare addons used by pear
+   - `@spacesops/pear-wrk-wdk` — mobile bundle, `--linked` addon names, HRPC worklet
+   - `@spacesops/react-native-bare-kit` — native addon linking, `Worklet` / Android JNI layout
+   - `@spacesops/wdk-react-native-core` — worklet lifecycle, providers, app integration
+   - **This starter** — app config, UI, Expo plugins that only configure the host app (e.g. `keepDebugSymbols`)
+
+2. **Implement the fix in that repo** (or the local fork in the workspace), add tests if the package has them, bump version, publish.
+
+3. **Update this starter** to a single dependency bump: `package.json` / lockfile, minimal config-only changes. Remove obsolete workarounds in the same change when the published package makes them redundant.
+
+## Avoid in the starter (unless explicitly temporary)
+
+- Editing files under `node_modules/` (changes are lost on `npm ci`)
+- `postinstall` scripts that relink, rewire, or alias upstream behavior once bare-kit/pear own that pipeline
+- Gradle/config plugins that **replace** upstream bare-kit linking logic instead of host-app packaging only
+- Long-lived `overrides` / aliases that paper over version skew between pear bundle `linked:` names and hoisted `bare-*` versions—fix pins and republish pear + bare-kit instead
+- Large copies of upstream logic in `scripts/` when the same code belongs in `react-native-bare-kit` or `pear-wrk-wdk`
+
+## Acceptable starter-only changes
+
+- Expo / Android **host** settings (signing, `keepDebugSymbols`, dev-client fixes) that upstream cannot own
+- App routes, chains, tokens, env, and UI
+- Thin wrappers that call published APIs with no fork of native or bundle behavior
+- **Short-term** bridge: document in `docs/` or a comment *why* it exists, which npm version removes it, and open a follow-up to delete it after publish
+
+## When proposing a fix
+
+- Prefer: “fix in `react-native-bare-kit`, publish beta.42, bump starter”
+- Not: “add another postinstall script in the starter” without a documented sunset
+- If both are needed during a release gap, land the upstream fix first (or in parallel), keep the starter diff as small and delete-ready as possible
+
+---
+
+## Release order (publish upstream before bumping the starter)
+
+Publish **in dependency order** so each tarball on npm is self-consistent. Do not bump the starter until every upstream package in the chain is on npm at the new version.
+
+| Step | Package | What must be true on npm |
+|------|---------|---------------------------|
+| 1 | `@spacesops/wdk-wallet-btc` | Bare addon prebuilds and `package.json` `"addon": true` versions match what pear will pack |
+| 2 | `@spacesops/pear-wrk-wdk` | `generated/bundle/wdk-worklet.mobile.bundle.js` built with `bare-pack --linked`; `linked:lib…so` names match the bare addon versions you intend to ship |
+| 3 | `@spacesops/react-native-bare-kit` | `libbare-kit.so` / iOS xcframework present in the tarball (`prepack` / `sync-native`); linking logic discovers nested `node_modules` addons |
+| 4 | `@spacesops/wdk-react-native-core` | `dependencies` pin the new pear + bare-kit versions; `dist/` built (`prepack`) |
+| 5 | **This starter** | Only `@spacesops/wdk-react-native-core@<new>` (plus lockfile); drop starter `overrides` when core pins the same bare-kit/bare-* versions |
+
+**Alignment rule:** For every `linked:lib<name>.<version>.so` in the published pear mobile bundle, the starter install tree (after link) must produce that exact filename under `react-native-bare-kit/android/src/main/addons/<abi>/`. Fix version pins in pear / wallet-btc / bare-kit—not permanent alias scripts in the starter.
+
+---
+
+## Explicit steps: build and publish each upstream package
+
+### `@spacesops/wdk-wallet-btc`
+
+1. Bump `version` in `package.json`.
+2. Align any `bare-*` dependency versions with pear’s pack graph.
+3. `npm ci` → tests → `npm publish --access public` (never `--ignore-scripts` if hooks matter).
+
+### `@spacesops/pear-wrk-wdk`
+
+1. Bump `version`; set `@spacesops/wdk-wallet-btc` (and other wallet deps) to the versions from step 1.
+2. `npm ci`.
+3. Run **`npm run gen:mobile-bundle`** (same as `prepublishOnly`—must succeed before publish).
+4. Confirm the bundle lists expected `linked:lib…` names (e.g. grep the bundle for `linked:libbare-crypto`).
+5. `npm publish --access public` — tarball **must** include `generated/bundle/wdk-worklet.mobile.bundle.js`.
+
+### `@spacesops/react-native-bare-kit`
+
+1. Bump `version`.
+2. `npm ci`.
+3. **`npm run sync-native`** then **`npm run verify-pack`** (or rely on `prepack`; do not publish without native libs).
+4. `npm publish --access public` — do not commit generated `android/src/main/addons/` into git; consumers generate addons at install/Gradle link.
+
+### `@spacesops/wdk-react-native-core`
+
+1. Bump `version`.
+2. Set `"@spacesops/pear-wrk-wdk"` and `"@spacesops/react-native-bare-kit"` to the versions published in steps 2–3.
+3. `npm ci` → `npm run build:strict` (or `build`) → tests.
+4. `npm publish --access public`.
+
+### This starter (after upstream is on npm)
+
+1. Set `"@spacesops/wdk-react-native-core": "<new>"` only (avoid duplicating pear/bare-kit as direct deps unless required).
+2. Remove or narrow **`overrides`** in `package.json` when core’s pins match (e.g. bare-kit beta.41, `bare-crypto` aligned with pear).
+3. Regenerate lockfile: **`npm install`** (or `npm ci` after committing the lock).
+4. Commit **`package.json`** and **`package-lock.json`** (and `addons-lock.json` if your workflow commits it after link).
+
+---
+
+## Explicit steps: verify `npm ci` is a clean install (no manual patches)
+
+Run from the starter root on a machine with Node `>=20.19.4` and no local `file:` overrides unless intentionally testing forks.
+
+1. **Clean tree**
+   ```bash
+   rm -rf node_modules android/app/build android/.gradle
+   npm ci
+   ```
+   `npm ci` must complete without editing anything under `node_modules` by hand. It runs **`postinstall`**: prune duplicate Android bins → bare-kit **`android/link.mjs`** → (if still present) **`scripts/alias-pear-linked-addons.mjs`**.
+
+2. **Pear ↔ addons alignment**
+   ```bash
+   npm run verify-pear-addons
+   ```
+   Must exit 0. If it fails, fix upstream pins or bare-kit link—not one-off copies into `node_modules`.
+
+3. **Optional APK check (after a local debug build)**
+   ```bash
+   npm run android
+   unzip -l android/app/build/outputs/apk/debug/app-debug.apk | grep bare-crypto
+   ```
+   Expect filenames that match pear `linked:` names (e.g. `libbare-crypto.1.12.0.so` only, not a stray 1.13.x).
+
+4. **Smoke**
+   - App starts; worklet loads pear bundle; no logcat `ADDON_NOT_FOUND` / `SIGABRT` in `libbare-kit.so`.
+   - `npm run typecheck` passes.
+
+5. **CI / teammate check**
+   - Fresh clone → `npm ci` → `verify-pear-addons` → build. No README step that says “copy into node_modules” or “run relink manually” unless marked temporary.
+
+---
+
+## Long-term target (reduce starter postinstall)
+
+Goal: **`npm ci`** only runs what cannot live upstream—ideally bare-kit’s own install/preBuild link and pear’s prebuilt bundle. Move alias/override logic into pear manifest + bare-kit link driven by `pear-linked-addons.json` from `gen:mobile-bundle`, then delete starter `postinstall` link orchestration and `overrides` when core pins are exact.
