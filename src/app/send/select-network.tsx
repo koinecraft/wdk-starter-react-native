@@ -16,7 +16,7 @@ import { Network, NetworkSelector } from '@/components/NetworkSelector';
 import { assetConfig, AssetTicker } from '@/config/assets';
 import { networkConfigs, NetworkType } from '@/config/networks';
 import formatAmount from '@/utils/format-amount';
-import { useWallet, useWalletManager, useBalancesForWallet } from '@tetherto/wdk-react-native-core';
+import { useWallet, useWalletManager, useBalancesForWallet } from '@spacesops/wdk-react-native-core';
 import getTokenConfigs from '@/config/get-token-configs';
 import { useLocalSearchParams } from 'expo-router';
 import { useFocusEffect } from 'expo-router';
@@ -30,13 +30,14 @@ import formatTokenAmount from '@/utils/format-token-amount';
 import Header from '@/components/header';
 import { colors } from '@/constants/colors';
 import { getNetworkMode, filterNetworksByMode, NetworkMode } from '@/services/network-mode-service';
+import getCurrentWalletId from '@/utils/get-current-wallet-id';
 
 export default function SelectNetworkScreen() {
   const insets = useSafeAreaInsets();
   const router = useDebouncedNavigation();
   const params = useLocalSearchParams();
   const { wallets, activeWalletId } = useWalletManager();
-  const currentWalletId = activeWalletId || wallets[0]?.identifier || 'default';
+  const currentWalletId = getCurrentWalletId(activeWalletId, wallets);
   const { isInitialized } = useWallet({ walletId: currentWalletId });
   const { tokenId, tokenSymbol, tokenName, scannedAddress } = params as {
     tokenId: string;

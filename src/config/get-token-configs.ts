@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { TokenConfigs } from '@tetherto/wdk-react-native-core';
+import type { TokenConfigs } from '@spacesops/wdk-react-native-core';
 import { NetworkMode } from '@/services/network-mode-service';
 
-const MAINNET_NETWORKS: string[] = ['ethereum', 'polygon', 'arbitrum', 'spark', 'plasma'];
+const MAINNET_NETWORKS: string[] = ['ethereum', 'polygon', 'arbitrum', 'spark', 'plasma', 'bitcoin'];
 const TESTNET_NETWORKS: string[] = ['sepolia', 'spark'];
 
 const ALL_TOKEN_CONFIGS: TokenConfigs = {
@@ -30,6 +30,10 @@ const ALL_TOKEN_CONFIGS: TokenConfigs = {
     tokens: [],
   },
   spark: {
+    native: { address: null, symbol: 'ETH', name: 'Spark ETH', decimals: 18 },
+    tokens: [],
+  },
+  bitcoin: {
     native: { address: null, symbol: 'BTC', name: 'Bitcoin', decimals: 8 },
     tokens: [],
   },

@@ -16,7 +16,7 @@ import Header from '@/components/header';
 import { assetConfig } from '@/config/assets';
 import { Network, networkConfigs } from '@/config/networks';
 import { NetworkType } from '@/config/networks';
-import { useWallet, useWalletManager } from '@tetherto/wdk-react-native-core';
+import { useWallet, useWalletManager } from '@spacesops/wdk-react-native-core';
 import { useLocalSearchParams } from 'expo-router';
 import { useFocusEffect } from 'expo-router';
 import { useDebouncedNavigation } from '@/hooks/use-debounced-navigation';
@@ -25,6 +25,7 @@ import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TouchableOpacity,
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors } from '@/constants/colors';
 import { getNetworkMode, filterNetworksByMode, NetworkMode } from '@/services/network-mode-service';
+import getCurrentWalletId from '@/utils/get-current-wallet-id';
 
 interface NetworkOption extends Network {
   address?: string;
@@ -45,7 +46,7 @@ export default function ReceiveSelectNetworkScreen() {
   const insets = useSafeAreaInsets();
   const router = useDebouncedNavigation();
   const { wallets, activeWalletId } = useWalletManager();
-  const currentWalletId = activeWalletId || wallets[0]?.identifier || 'default';
+  const currentWalletId = getCurrentWalletId(activeWalletId, wallets);
   const { addresses, getAddress } = useWallet({ walletId: currentWalletId });
   const params = useLocalSearchParams();
 

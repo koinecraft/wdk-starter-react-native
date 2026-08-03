@@ -16,9 +16,10 @@ import {
   validateEvmAddress,
   validateSparkAddress,
   AddressValidator,
+  validateBitcoinAddress,
 } from '@/utils/address-validators';
 
-export type NetworkType = 'ethereum' | 'polygon' | 'arbitrum' | 'spark' | 'plasma' | 'sepolia';
+export type NetworkType = 'ethereum' | 'polygon' | 'arbitrum' | 'spark' | 'plasma' | 'sepolia' | 'bitcoin';
 export type AccountType = 'Safe' | 'Native';
 
 export interface Network {
@@ -81,6 +82,17 @@ export const networkConfigs: Record<NetworkType, Network> = {
     accountType: 'Native',
     addressValidator: validateSparkAddress,
     explorerUrl: 'https://sparkscan.io/tx/',
+  },
+  bitcoin: {
+    id: 'bitcoin',
+    name: 'Bitcoin',
+    gasLevel: 'Normal',
+    gasColor: '#FF9500',
+    icon: require('../../assets/images/chains/bitcoin-btc-logo.png'),
+    color: '#F7931A',
+    accountType: 'Safe',
+    addressValidator: validateBitcoinAddress,
+    explorerUrl: 'https://mempool.space/tx/',
   },
   plasma: {
     id: 'plasma',

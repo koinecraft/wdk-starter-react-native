@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { BalanceLoader } from '@/components/BalanceLoader';
-import { useWallet, useWalletManager, useBalancesForWallet, useRefreshBalance } from '@tetherto/wdk-react-native-core';
+import { useWallet, useWalletManager, useBalancesForWallet, useRefreshBalance } from '@spacesops/wdk-react-native-core';
 import { Balance } from '@tetherto/wdk-uikit-react-native';
 import { useDebouncedNavigation } from '@/hooks/use-debounced-navigation';
 import { useFocusEffect } from 'expo-router';
@@ -49,6 +49,7 @@ import formatTokenAmount from '@/utils/format-token-amount';
 import useWalletAvatar from '@/hooks/use-wallet-avatar';
 import { colors } from '@/constants/colors';
 import { getWalletName } from '@/config/avatar-options';
+import getCurrentWalletId from '@/utils/get-current-wallet-id';
 
 type AggregatedBalance = ({
   denomination: string;
@@ -61,7 +62,7 @@ export default function WalletScreen() {
   const insets = useSafeAreaInsets();
   const router = useDebouncedNavigation();
   const { wallets, activeWalletId } = useWalletManager();
-  const currentWalletId = activeWalletId || wallets[0]?.identifier || 'default';
+  const currentWalletId = getCurrentWalletId(activeWalletId, wallets);
   const { isInitialized, addresses } = useWallet({ walletId: currentWalletId });
   const { mutate: refreshBalance } = useRefreshBalance();
 

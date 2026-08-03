@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { FiatCurrency, pricingService } from '@/services/pricing-service';
-import { useWallet, useWalletManager, useBalancesForWallet } from '@tetherto/wdk-react-native-core';
+import { useWallet, useWalletManager, useBalancesForWallet } from '@spacesops/wdk-react-native-core';
 import { useDebouncedNavigation } from '@/hooks/use-debounced-navigation';
 import { useFocusEffect } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -27,12 +27,13 @@ import formatTokenAmount from '@/utils/format-token-amount';
 import Header from '@/components/header';
 import { colors } from '@/constants/colors';
 import { getNetworkMode, filterNetworksByMode, NetworkMode } from '@/services/network-mode-service';
+import getCurrentWalletId from '@/utils/get-current-wallet-id';
 
 export default function AssetsScreen() {
   const insets = useSafeAreaInsets();
   const router = useDebouncedNavigation();
   const { wallets, activeWalletId } = useWalletManager();
-  const currentWalletId = activeWalletId || wallets[0]?.identifier;
+  const currentWalletId = getCurrentWalletId(activeWalletId, wallets);
   const { isInitialized } = useWallet({ walletId: currentWalletId });
   const [assets, setAssets] = useState<Asset[]>([]);
   const [networkMode, setNetworkMode] = useState<NetworkMode>('mainnet');
@@ -132,10 +133,14 @@ export default function AssetsScreen() {
   };
 
   const handleAssetPress = (asset: Asset) => {
+    if (!currentWalletId) {
+      return;
+    }
+
     router.push({
       pathname: '/token-details',
       params: {
-        walletId: 'default',
+        walletId: currentWalletId,
         token: asset.id,
       },
     });

@@ -16,7 +16,7 @@ import Header from '@/components/header';
 import { clearAvatar, clearWalletName } from '@/config/avatar-options';
 import { networkConfigs, NetworkType } from '@/config/networks';
 import useWalletAvatar from '@/hooks/use-wallet-avatar';
-import { useWallet, useWalletManager } from '@tetherto/wdk-react-native-core';
+import { useWallet, useWalletManager } from '@spacesops/wdk-react-native-core';
 import * as Clipboard from 'expo-clipboard';
 import { useDebouncedNavigation } from '@/hooks/use-debounced-navigation';
 import { Copy, Info, Shield, Trash2, Wallet, Globe } from 'lucide-react-native';
@@ -27,12 +27,13 @@ import { toast } from 'sonner-native';
 import { colors } from '@/constants/colors';
 import getChainsConfig, { SparkNetworkMode } from '@/config/get-chains-config';
 import { getNetworkMode, setNetworkMode, NetworkMode, getNetworksForMode } from '@/services/network-mode-service';
+import getCurrentWalletId from '@/utils/get-current-wallet-id';
 
 export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const router = useDebouncedNavigation();
   const { wallets, activeWalletId, deleteWallet } = useWalletManager();
-  const currentWalletId = activeWalletId || wallets[0]?.identifier || 'default';
+  const currentWalletId = getCurrentWalletId(activeWalletId, wallets);
   const { addresses, getAddress, isInitialized } = useWallet({ walletId: currentWalletId });
   const avatar = useWalletAvatar();
   const [walletAddresses, setWalletAddresses] = useState<Record<string, string>>({});

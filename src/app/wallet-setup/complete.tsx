@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { CommonActions, useNavigation } from '@react-navigation/native';
-import { useWalletManager } from '@tetherto/wdk-react-native-core';
+import { useWalletManager } from '@spacesops/wdk-react-native-core';
 import { useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

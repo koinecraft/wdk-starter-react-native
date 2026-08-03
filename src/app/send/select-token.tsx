@@ -20,7 +20,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors } from '@/constants/colors';
-import { useWallet, useWalletManager, useBalancesForWallet } from '@tetherto/wdk-react-native-core';
+import { useWallet, useWalletManager, useBalancesForWallet } from '@spacesops/wdk-react-native-core';
 import getTokenConfigs from '@/config/get-token-configs';
 import { AssetSelector, type Token } from '@tetherto/wdk-uikit-react-native';
 import { FiatCurrency, pricingService } from '@/services/pricing-service';
@@ -30,13 +30,14 @@ import { getRecentTokens, addToRecentTokens } from '@/utils/recent-tokens';
 import formatTokenAmount from '@/utils/format-token-amount';
 import Header from '@/components/header';
 import { getNetworkMode, filterNetworksByMode, NetworkMode } from '@/services/network-mode-service';
+import getCurrentWalletId from '@/utils/get-current-wallet-id';
 
 export default function SelectTokenScreen() {
   const insets = useSafeAreaInsets();
   const router = useDebouncedNavigation();
   const params = useLocalSearchParams();
   const { wallets, activeWalletId } = useWalletManager();
-  const currentWalletId = activeWalletId || wallets[0]?.identifier || 'default';
+  const currentWalletId = getCurrentWalletId(activeWalletId, wallets);
   const { isInitialized } = useWallet({ walletId: currentWalletId });
 
   const { scannedAddress } = params as { scannedAddress?: string };

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { useWalletManager } from '@tetherto/wdk-react-native-core';
+import { useWalletManager } from '@spacesops/wdk-react-native-core';
 import { useDebouncedNavigation } from '@/hooks/use-debounced-navigation';
 import { Fingerprint, Shield, Trash2 } from 'lucide-react-native';
 import React, { useEffect, useState } from 'react';
@@ -20,6 +20,7 @@ import { ActivityIndicator, Alert, StyleSheet, Text, TouchableOpacity, View } fr
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors } from '@/constants/colors';
 import getErrorMessage from '@/utils/get-error-message';
+import getCurrentWalletId from '@/utils/get-current-wallet-id';
 
 export default function AuthorizeScreen() {
   const insets = useSafeAreaInsets();
@@ -34,7 +35,7 @@ export default function AuthorizeScreen() {
   }, []);
 
   const handleAuthorize = async () => {
-    if (wallets.length === 0) {
+    if (wallets.every(w => !w.exists)) {
       Alert.alert('Error', 'No wallet found');
       router.replace('/onboarding');
       return;
@@ -44,7 +45,10 @@ export default function AuthorizeScreen() {
     setError(null);
 
     try {
-      const walletId = wallets[0].identifier;
+      const walletId = getCurrentWalletId(null, wallets);
+      if (!walletId) {
+        throw new Error('No wallet found');
+      }
       await initializeWallet({ walletId });
       router.replace('/wallet');
     } catch (error) {

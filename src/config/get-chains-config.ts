@@ -15,6 +15,17 @@
 import { NetworkMode } from '@/services/network-mode-service';
 
 export type SparkNetworkMode = 'MAINNET' | 'TESTNET' | 'REGTEST';
+export type BitcoinNetworkMode = 'bitcoin' | 'testnet' | 'regtest';
+export type ElectrumProtocol = 'tcp' | 'tls' | 'ssl';
+
+type BtcElectrumClientConfig = {
+  type: 'electrum';
+  clientConfig: {
+    host?: string;
+    port?: number;
+    protocol?: ElectrumProtocol;
+  };
+};
 
 type ChainConfig = {
   chainId: number;
@@ -27,10 +38,27 @@ type ChainConfig = {
   safeModulesVersion?: string;
   paymasterToken?: { address: string };
   transferMaxFee?: number;
-  network?: SparkNetworkMode;
+  network?: SparkNetworkMode | BitcoinNetworkMode;
+  client?: BtcElectrumClientConfig;
 };
 
-const MAINNET_CHAINS: string[] = ['ethereum', 'polygon', 'arbitrum', 'spark', 'plasma'];
+const parseBitcoinNetwork = (): BitcoinNetworkMode | undefined => {
+  const network = process.env.EXPO_PUBLIC_BITCOIN_NETWORK;
+  if (network === 'bitcoin' || network === 'testnet' || network === 'regtest') {
+    return network;
+  }
+  return undefined;
+};
+
+const parseElectrumProtocol = (): ElectrumProtocol | undefined => {
+  const protocol = process.env.EXPO_PUBLIC_ELECTRS_PROTOCOL;
+  if (protocol === 'tcp' || protocol === 'tls' || protocol === 'ssl') {
+    return protocol;
+  }
+  return undefined;
+};
+
+const MAINNET_CHAINS: string[] = ['ethereum', 'polygon', 'arbitrum', 'spark', 'plasma', 'bitcoin'];
 const TESTNET_CHAINS: string[] = ['sepolia', 'spark'];
 
 const getChainsConfig = (sparkNetwork: SparkNetworkMode = 'MAINNET', networkMode?: NetworkMode): Record<string, ChainConfig> => {
@@ -64,6 +92,33 @@ const getChainsConfig = (sparkNetwork: SparkNetworkMode = 'MAINNET', networkMode
       chainId: 99999,
       blockchain: 'spark',
       network: sparkNetwork,
+    },
+    bitcoin: {
+      chainId: 8332,
+      blockchain: 'bitcoin',
+      // Delete the wallet when switching to testnet or back to mainnet.
+      network: parseBitcoinNetwork() ?? 'bitcoin',
+      client: {
+        type: 'electrum',
+        clientConfig: {
+          host: process.env.EXPO_PUBLIC_ELECTRS_HOST,
+          port: process.env.EXPO_PUBLIC_ELECTRS_PORT
+            ? Number(process.env.EXPO_PUBLIC_ELECTRS_PORT)
+            : undefined,
+          protocol: parseElectrumProtocol(),
+        },
+      },
+
+      // For P2TR (Taproot) addresses (bc1p...), use BIP-86
+      // For P2WPKH (Native SegWit) addresses (bc1q...), use BIP-84
+      // Currently configured for P2TR wallet: bc1pcp2p7nzg8kknr42w6yel8k7hpy5tedjpacnwlvtfhzgmaq6u4qnq06nhac
+      // Derivation path format: m/{bip}'/{network}'/{account}'/{change}/{index}
+      // - For testnet (network='testnet'): m/86'/1'/0'/0/0 (first address)
+      // - For mainnet (network='bitcoin'): m/86'/0'/0'/0/0 (first address)
+      // bip: 86, // Use BIP86 for Taproot (m/86') addresses
+      // script_type: 'P2TR', // Use P2TR for Taproot addresses
+      // bip: 84, // Use BIP84 for native SegWit (m/84') addresses
+      // script_type: 'P2WPKH', // Use P2WPKH for native SegWit addresses
     },
     ethereum: {
       chainId: 1,

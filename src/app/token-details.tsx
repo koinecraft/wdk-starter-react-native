@@ -15,7 +15,7 @@
 import { assetConfig, AssetTicker } from '@/config/assets';
 import { NetworkType, networkConfigs } from '@/config/networks';
 import formatAmount from '@/utils/format-amount';
-import { useWallet, useWalletManager, useBalancesForWallet } from '@tetherto/wdk-react-native-core';
+import { useWallet, useWalletManager, useBalancesForWallet } from '@spacesops/wdk-react-native-core';
 import { useLocalSearchParams } from 'expo-router';
 import { useFocusEffect } from 'expo-router';
 import { useDebouncedNavigation } from '@/hooks/use-debounced-navigation';
@@ -29,12 +29,13 @@ import getDisplaySymbol from '@/utils/get-display-symbol';
 import Header from '@/components/header';
 import { colors } from '@/constants/colors';
 import { getNetworkMode, NetworkMode } from '@/services/network-mode-service';
+import getCurrentWalletId from '@/utils/get-current-wallet-id';
 
 export default function TokenDetailsScreen() {
   const router = useDebouncedNavigation();
   const insets = useSafeAreaInsets();
   const { wallets, activeWalletId } = useWalletManager();
-  const currentWalletId = activeWalletId || wallets[0]?.identifier;
+  const currentWalletId = getCurrentWalletId(activeWalletId, wallets);
   const { isInitialized, addresses } = useWallet({ walletId: currentWalletId });
   const params = useLocalSearchParams<{ walletId?: string; token?: string }>();
 

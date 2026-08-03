@@ -75,7 +75,8 @@
           }
         }
       ],
-      "./plugins/withAndroidSubprojects.js"
+      "./plugins/withAndroidSubprojects.js",
+      "./plugins/withBareKitAndroid.js"
     ],
     "experiments": {
       "typedRoutes": true,

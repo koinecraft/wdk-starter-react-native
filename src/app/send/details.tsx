@@ -14,7 +14,7 @@
 
 import { AssetTicker } from '@/config/assets';
 import { NetworkType, networkConfigs } from '@/config/networks';
-import { useRefreshBalance, useWallet, useWalletManager } from '@tetherto/wdk-react-native-core';
+import { useRefreshBalance, useWallet, useWalletManager } from '@spacesops/wdk-react-native-core';
 import getTokenConfigs from '@/config/get-token-configs';
 import { CryptoAddressInput } from '@tetherto/wdk-uikit-react-native';
 import { useLocalSearchParams } from 'expo-router';
@@ -53,6 +53,7 @@ import * as Clipboard from 'expo-clipboard';
 import getDisplaySymbol from '@/utils/get-display-symbol';
 import formatTokenAmount from '@/utils/format-token-amount';
 import formatUSDValue from '@/utils/format-usd-value';
+import getCurrentWalletId from '@/utils/get-current-wallet-id';
 import Header from '@/components/header';
 import { toast } from 'sonner-native';
 import { validateAddressByNetwork } from '@/utils/address-validators';
@@ -63,7 +64,7 @@ export default function SendDetailsScreen() {
   const router = useDebouncedNavigation();
   const { mutate: refreshBalance } = useRefreshBalance();
   const { wallets, activeWalletId } = useWalletManager();
-  const currentWalletId = activeWalletId || wallets[0]?.identifier || 'default';
+  const currentWalletId = getCurrentWalletId(activeWalletId, wallets);
   const { callAccountMethod, isInitialized, addresses } = useWallet({ walletId: currentWalletId });
   const params = useLocalSearchParams();
 

@@ -12,16 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { useWallet, useWalletManager } from '@tetherto/wdk-react-native-core';
+import { useWallet, useWalletManager } from '@spacesops/wdk-react-native-core';
 import { Redirect } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { pricingService } from '../services/pricing-service';
 import { colors } from '@/constants/colors';
+import getCurrentWalletId from '@/utils/get-current-wallet-id';
 
 export default function Index() {
   const { wallets, activeWalletId, refreshWalletList } = useWalletManager();
-  const currentWalletId = activeWalletId || wallets[0]?.identifier || 'default';
+  const currentWalletId = getCurrentWalletId(activeWalletId, wallets);
   const { isInitialized } = useWallet({ walletId: currentWalletId });
   const [isReady, setIsReady] = useState(false);
 

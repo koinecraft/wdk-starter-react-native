@@ -28,6 +28,7 @@ export const getNetworkType = (networkId: string): NetworkType => {
     spark: 'spark',
     plasma: 'plasma',
     sepolia: 'sepolia',
+    bitcoin: 'bitcoin',
   };
   return networkMap[networkId] || 'ethereum';
 };
@@ -55,6 +56,7 @@ export const calculateGasFee = async (
     spark: 0.00001,
     plasma: 0.0001,
     sepolia: 0.001,
+    bitcoin: 0.00005,
   };
 
   return {

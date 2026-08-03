@@ -14,7 +14,7 @@
 
 import avatarOptions, { setAvatar, setWalletName as saveWalletName } from '@/config/avatar-options';
 import { CommonActions, useNavigation } from '@react-navigation/native';
-import { useWalletManager } from '@tetherto/wdk-react-native-core';
+import { useWalletManager } from '@spacesops/wdk-react-native-core';
 import { useLocalSearchParams } from 'expo-router';
 import { useDebouncedNavigation } from '@/hooks/use-debounced-navigation';
 import { ChevronLeft } from 'lucide-react-native';
