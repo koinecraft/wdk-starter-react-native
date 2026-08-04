@@ -20,8 +20,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "postinstall": "node scripts/prune-android-bin.mjs && rm -rf node_modules/@spacesops/react-native-bare-kit/android/src/main/addons && node node_modules/@spacesops/react-native-bare-kit/android/link.mjs && node scripts/alias-pear-linked-addons.mjs",
-    "verify-pear-addons": "node scripts/verify-pear-addons.mjs"
+    "postinstall": "node node_modules/@spacesops/react-native-bare-kit/android/link.mjs",
+    "verify-addons": "wdk-verify-addons"
   },
   "dependencies": {
     "@craftzdog/react-native-buffer": "6.1.1",
@@ -32,7 +32,7 @@
     "@react-navigation/elements": "2.9.3",
     "@react-navigation/native": "7.1.26",
     "@reduxjs/toolkit": "2.11.2",
-    "@spacesops/wdk-react-native-core": "1.0.0-beta.53",
+    "@spacesops/wdk-react-native-core": "1.0.0-beta.54",
     "@tetherto/wdk-pricing-bitfinex-http": "^1.0.0-beta.1",
     "@tetherto/wdk-pricing-provider": "^1.0.0-beta.1",
     "@tetherto/wdk-uikit-react-native": "^1.0.0-beta.2",
@@ -76,7 +76,6 @@
     "react-native-chart-kit": "6.12.0",
     "react-native-crypto": "2.2.1",
     "react-native-device-info": "14.1.1",
-    "react-native-fast-pbkdf2": "0.3.1",
     "react-native-gesture-handler": "2.28.0",
     "react-native-get-random-values": "1.11.0",
     "react-native-keychain": "10.0.0",
