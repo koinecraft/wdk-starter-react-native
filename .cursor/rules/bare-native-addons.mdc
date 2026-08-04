@@ -1,0 +1,39 @@
+---
+description: Bare/pear native addon invariants - dependency rules, ADDON_NOT_FOUND diagnosis, and which repo owns a fix
+alwaysApply: true
+---
+
+# Bare native addons and the pear worklet
+
+The worklet bundle in `@spacesops/pear-wrk-wdk` hardcodes the **exact** versions of the native addons it links (`linked:libbare-crypto.1.12.0.so`). Pear declares all of them as exact dependencies, so a correct install needs no overrides and no alias scripts.
+
+## Dependency rules
+
+- **Install `@spacesops/wdk-react-native-core` only.** Never add `@spacesops/pear-wrk-wdk` or `@spacesops/react-native-bare-kit` to `dependencies` — your ranges then drift from the tested set and it fails at runtime, not at install.
+- **Never add a bare addon package** (`bare-crypto`, `bare-tcp`, `@buildonspark/spark-frost-bare-addon`, anything with `"addon": true`). `link` turns *every* copy in the tree into a `.so`, so a direct dependency at a different version ships a second unused library in the APK. This repo once pinned `spark-frost@0.0.5` against pear's `0.0.12` and shipped both for months.
+- **Never add `bare-*` to `overrides`.** If a version looks wrong, fix the pin in pear and republish.
+
+## After changing anything that affects the addon tree
+
+npm preserves existing lock entries instead of re-resolving, which silently keeps an old version hoisted and nests the correct one beneath it — two copies in the APK. Always re-resolve:
+
+```bash
+rm -rf node_modules package-lock.json && npm install
+npx wdk-verify-addons
+```
+
+`bare-posix` reporting "no Android prebuild" is expected; its `exports` map `android` to `unsupported.js`.
+
+## Diagnosing failures — read the message before changing anything
+
+| Symptom | What it actually means |
+|---|---|
+| `ADDON_NOT_FOUND` **with a candidate listed** | Resolution worked and the file was found; `dlopen` failed. A **symbol** problem, not a missing or misnamed file. Bare truncates the real cause at 1024 bytes. See `node_modules/@spacesops/react-native-bare-kit/TROUBLESHOOTING.md`. |
+| Works in debug, crashes in release | Missing the Expo plugin. `app.json` `plugins` must include `"@spacesops/react-native-bare-kit"` — addons are corrupted by symbol stripping. |
+| One chain fails (`Address "undefined" is invalid`, `MODULE_NOT_FOUND` for a wallet file) | Comes from versions packed **inside pear's bundle**. The copies in this repo's `node_modules` are used for types and never execute, so they look fine. Reproduce in `pear-wrk-wdk`, never here. |
+
+Do not chase filenames, `linked:` alignment, `nativeLibraryDir`, or `expo.useLegacyPackaging` on an `ADDON_NOT_FOUND` alone. Get the real `dlerror()` first.
+
+## Where a fix belongs
+
+Addon linking, symbol patching, and `keepDebugSymbols` are owned by `react-native-bare-kit`; the bundle and its addon pins by `pear-wrk-wdk`; provider and lifecycle code by `wdk-react-native-core`. Do not reimplement any of it here, and never edit `node_modules` — see `upstream-dependencies-first`.
