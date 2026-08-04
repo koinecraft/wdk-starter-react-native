@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "wdkstarterreactnative",
-    "newArchEnabled": true,
+    "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.wdkstarterreactnative",
@@ -15,7 +15,8 @@
         "UIViewControllerBasedStatusBarAppearance": false,
         "NSFaceIDUsageDescription": "This app uses Face ID to secure your wallet and authenticate transactions.",
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "appleTeamId": "YDF9P54VLB"
     },
     "android": {
       "adaptiveIcon": {
@@ -24,30 +25,29 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.anonymous.wdkstarterreactnative",
-      "statusBar": {
-        "style": "light",
-        "backgroundColor": "#000000"
-      }
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "splash": {
-      "image": "./assets/images/splash-logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#FF6501",
-      "dark": {
-        "backgroundColor": "#FF6501"
-      }
-    },
-    "userInterfaceStyle": "light",
     "plugins": [
       "expo-router",
       "expo-dev-client",
+      [
+        "expo-status-bar",
+        {
+          "android": {
+            "barStyle": "light-content",
+            "backgroundColor": "#000000"
+          }
+        }
+      ],
       [
         "expo-splash-screen",
         {
@@ -71,7 +71,8 @@
             "compileSdkVersion": 36,
             "buildToolsVersion": "36.0.0",
             "enableProguardInReleaseBuilds": true,
-            "enableShrinkResourcesInReleaseBuilds": true
+            "enableShrinkResourcesInReleaseBuilds": true,
+            "enableMinifyInReleaseBuilds": true
           }
         }
       ],
@@ -82,6 +83,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b02a3889-0211-495b-b525-94da63f7f5dd"
+      }
+    },
+    "owner": "koine"
   }
 }

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { CommonActions, useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from 'expo-router/react-navigation';
 import { useWalletManager } from '@spacesops/wdk-react-native-core';
 import { useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react';

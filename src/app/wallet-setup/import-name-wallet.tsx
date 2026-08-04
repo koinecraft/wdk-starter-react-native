@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import avatarOptions, { setAvatar, setWalletName as saveWalletName } from '@/config/avatar-options';
-import { CommonActions, useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from 'expo-router/react-navigation';
 import { useWalletManager } from '@spacesops/wdk-react-native-core';
 import { useLocalSearchParams } from 'expo-router';
 import { useDebouncedNavigation } from '@/hooks/use-debounced-navigation';

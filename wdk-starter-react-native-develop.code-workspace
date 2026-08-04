@@ -16,5 +16,7 @@
 			"path": "../react-native-bare-kit"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "disabled"
+	}
 }

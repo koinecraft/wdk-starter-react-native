@@ -19,7 +19,7 @@ import { Buffer } from '@craftzdog/react-native-buffer';
 // @ts-ignore
 global.Buffer = Buffer as unknown as BufferConstructor;
 
-import { DarkTheme, ThemeProvider as NavigationThemeProvider } from '@react-navigation/native';
+import { DarkTheme, ThemeProvider as NavigationThemeProvider } from 'expo-router/react-navigation';
 import { WdkAppProvider } from '@spacesops/wdk-react-native-core';
 import { ThemeProvider } from '@tetherto/wdk-uikit-react-native';
 import { Stack } from 'expo-router';
