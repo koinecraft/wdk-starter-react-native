@@ -76,6 +76,7 @@
         }
       ],
       "./plugins/withDevLauncherMainApplication.js",
+      "./plugins/withIosModularHeaders.js",
       "@spacesops/react-native-bare-kit"
     ],
     "experiments": {
