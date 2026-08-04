@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { useWalletManager } from '@spacesops/wdk-react-native-core';
+import { useWalletManager, useWorklet } from '@spacesops/wdk-react-native-core';
 import { useDebouncedNavigation } from '@/hooks/use-debounced-navigation';
 import { Fingerprint, Shield, Trash2 } from 'lucide-react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors } from '@/constants/colors';
@@ -26,18 +26,20 @@ export default function AuthorizeScreen() {
   const insets = useSafeAreaInsets();
   const router = useDebouncedNavigation();
   const { hasWallet, initializeWallet, deleteWallet, wallets } = useWalletManager();
+  const { isWorkletStarted } = useWorklet();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const autoTriedRef = useRef(false);
 
-  useEffect(() => {
-    handleAuthorize();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleAuthorize = async () => {
+  const handleAuthorize = useCallback(async () => {
     if (wallets.every(w => !w.exists)) {
       Alert.alert('Error', 'No wallet found');
       router.replace('/onboarding');
+      return;
+    }
+
+    if (!isWorkletStarted) {
+      setError('Wallet runtime is still starting. Tap again in a moment.');
       return;
     }
 
@@ -58,7 +60,14 @@ export default function AuthorizeScreen() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [wallets, isWorkletStarted, initializeWallet, router]);
+
+  // Auto-unlock once the worklet has started (avoids the cold-start networkConfigs race).
+  useEffect(() => {
+    if (!isWorkletStarted || autoTriedRef.current) return;
+    autoTriedRef.current = true;
+    handleAuthorize();
+  }, [isWorkletStarted, handleAuthorize]);
 
   const handleBiometricAuth = async () => {
     handleAuthorize();

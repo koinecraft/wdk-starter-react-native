@@ -19,7 +19,7 @@ const NETWORK_MODE_KEY = 'network_mode';
 
 export type NetworkMode = 'mainnet' | 'testnet';
 
-const MAINNET_NETWORKS: NetworkType[] = ['ethereum', 'polygon', 'arbitrum', 'spark', 'plasma'];
+const MAINNET_NETWORKS: NetworkType[] = ['ethereum', 'polygon', 'arbitrum', 'spark', 'bitcoin', 'plasma'];
 const TESTNET_NETWORKS: NetworkType[] = ['sepolia', 'spark'];
 
 export const getNetworkMode = async (): Promise<NetworkMode> => {

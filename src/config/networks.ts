@@ -90,7 +90,7 @@ export const networkConfigs: Record<NetworkType, Network> = {
     gasColor: '#FF9500',
     icon: require('../../assets/images/chains/bitcoin-btc-logo.png'),
     color: '#F7931A',
-    accountType: 'Safe',
+    accountType: 'Native',
     addressValidator: validateBitcoinAddress,
     explorerUrl: 'https://mempool.space/tx/',
   },

@@ -15,7 +15,7 @@
 import type { TokenConfigs } from '@spacesops/wdk-react-native-core';
 import { NetworkMode } from '@/services/network-mode-service';
 
-const MAINNET_NETWORKS: string[] = ['ethereum', 'polygon', 'arbitrum', 'spark', 'plasma', 'bitcoin'];
+const MAINNET_NETWORKS: string[] = ['ethereum', 'polygon', 'arbitrum', 'spark', 'bitcoin', 'plasma'];
 const TESTNET_NETWORKS: string[] = ['sepolia', 'spark'];
 
 const ALL_TOKEN_CONFIGS: TokenConfigs = {
@@ -30,7 +30,7 @@ const ALL_TOKEN_CONFIGS: TokenConfigs = {
     tokens: [],
   },
   spark: {
-    native: { address: null, symbol: 'ETH', name: 'Spark ETH', decimals: 18 },
+    native: { address: null, symbol: 'BTC', name: 'Spark BTC', decimals: 8 },
     tokens: [],
   },
   bitcoin: {

@@ -58,7 +58,7 @@ const parseElectrumProtocol = (): ElectrumProtocol | undefined => {
   return undefined;
 };
 
-const MAINNET_CHAINS: string[] = ['ethereum', 'polygon', 'arbitrum', 'spark', 'plasma', 'bitcoin'];
+const MAINNET_CHAINS: string[] = ['ethereum', 'polygon', 'arbitrum', 'spark', 'bitcoin', 'plasma'];
 const TESTNET_CHAINS: string[] = ['sepolia', 'spark'];
 
 const getChainsConfig = (sparkNetwork: SparkNetworkMode = 'MAINNET', networkMode?: NetworkMode): Record<string, ChainConfig> => {

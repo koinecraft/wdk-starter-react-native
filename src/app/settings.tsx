@@ -25,7 +25,6 @@ import { Alert, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } f
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { toast } from 'sonner-native';
 import { colors } from '@/constants/colors';
-import getChainsConfig, { SparkNetworkMode } from '@/config/get-chains-config';
 import { getNetworkMode, setNetworkMode, NetworkMode, getNetworksForMode } from '@/services/network-mode-service';
 import getCurrentWalletId from '@/utils/get-current-wallet-id';
 
@@ -51,7 +50,6 @@ export default function SettingsScreen() {
     if (!networkModeLoaded) return;
 
     const fetchAddresses = async () => {
-      const sparkNetwork: SparkNetworkMode = networkMode === 'testnet' ? 'REGTEST' : 'MAINNET';
       const allowedNetworks = getNetworksForMode(networkMode);
 
       console.log('[Settings] === Starting fetchAddresses ===');
@@ -179,10 +177,11 @@ export default function SettingsScreen() {
     return null;
   };
 
-  const filteredAddresses = Object.entries(walletAddresses).filter(([network]) => {
-    const allowedNetworks = getNetworksForMode(networkMode);
-    return allowedNetworks.includes(network as NetworkType);
-  });
+  // Always list every network for the mode (Bitcoin next to Spark), even while an address is still loading.
+  const displayAddresses = getNetworksForMode(networkMode).map((network) => ({
+    network,
+    address: walletAddresses[network],
+  }));
 
   const handleNetworkModeToggle = async (value: boolean) => {
     const newMode: NetworkMode = value ? 'testnet' : 'mainnet';
@@ -258,32 +257,35 @@ export default function SettingsScreen() {
           </View>
 
           <View style={styles.addressCard}>
-            {filteredAddresses.length > 0 ? (
-              filteredAddresses.map(([network, address], index, array) => (
-                <TouchableOpacity
-                  key={network}
-                  style={[
-                    styles.addressRow,
-                    index === array.length - 1 ? styles.addressRowLast : null,
-                  ]}
-                  onPress={() => handleCopyAddress(address, getNetworkName(network))}
-                  activeOpacity={0.7}
-                >
-                  <View style={styles.addressContent}>
-                    <View style={styles.networkLabelRow}>
-                      <Text style={styles.networkLabel}>{getNetworkName(network)}</Text>
-                      {getAddressType(network) && (
-                        <Text style={styles.addressTypeTag}>{getAddressType(network)}</Text>
-                      )}
-                    </View>
-                    <Text style={styles.addressValue}>{formatAddress(address)}</Text>
+            {displayAddresses.map(({ network, address }, index, array) => (
+              <TouchableOpacity
+                key={network}
+                style={[
+                  styles.addressRow,
+                  index === array.length - 1 ? styles.addressRowLast : null,
+                ]}
+                onPress={() => {
+                  if (address) {
+                    handleCopyAddress(address, getNetworkName(network));
+                  }
+                }}
+                activeOpacity={address ? 0.7 : 1}
+                disabled={!address}
+              >
+                <View style={styles.addressContent}>
+                  <View style={styles.networkLabelRow}>
+                    <Text style={styles.networkLabel}>{getNetworkName(network)}</Text>
+                    {getAddressType(network) && (
+                      <Text style={styles.addressTypeTag}>{getAddressType(network)}</Text>
+                    )}
                   </View>
-                  <Copy size={18} color={colors.primary} />
-                </TouchableOpacity>
-              ))
-            ) : (
-              <Text style={styles.noAddressText}>No addresses available</Text>
-            )}
+                  <Text style={styles.addressValue}>
+                    {address ? formatAddress(address) : isInitialized ? 'Unavailable' : 'Loading…'}
+                  </Text>
+                </View>
+                {address ? <Copy size={18} color={colors.primary} /> : null}
+              </TouchableOpacity>
+            ))}
           </View>
         </View>
 
