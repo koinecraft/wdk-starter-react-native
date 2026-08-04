@@ -1,36 +1,28 @@
 const { withProjectBuildGradle } = require('@expo/config-plugins');
 
-const withAndroidSubprojects = (config) => {
-  return withProjectBuildGradle(config, (modConfig) => {
-    if (modConfig.modResults.language === 'groovy') {
-      // Add subprojects block after allprojects
-      const subprojectsBlock = `
-subprojects {
-  afterEvaluate { project ->
-    if (project.hasProperty('android')) {
-      project.android {
-        compileSdkVersion = 36
-      }
-    }
-  }
+const PBKDF2_EXT_MARKER = '// spacesops: react-native-fast-pbkdf2 compileSdk ext';
+
+const PBKDF2_EXT_BLOCK = `
+${PBKDF2_EXT_MARKER}
+ext {
+  Pbkdf2_compileSdkVersion = 36
+  Pbkdf2_buildToolsVersion = "36.0.0"
+  Pbkdf2_minSdkVersion = 29
+  Pbkdf2_targetSdkVersion = 36
 }
 `;
 
-      // Insert the subprojects block after the allprojects block
-      if (!modConfig.modResults.contents.includes('subprojects {')) {
-        const allProjectsEndIndex = modConfig.modResults.contents.indexOf(
-          '}',
-          modConfig.modResults.contents.indexOf('allprojects {')
-        );
-        if (allProjectsEndIndex !== -1) {
-          modConfig.modResults.contents =
-            modConfig.modResults.contents.slice(0, allProjectsEndIndex + 1) +
-            '\n' +
-            subprojectsBlock +
-            modConfig.modResults.contents.slice(allProjectsEndIndex + 1);
-        }
-      }
+const withAndroidSubprojects = (config) => {
+  return withProjectBuildGradle(config, (modConfig) => {
+    if (modConfig.modResults.language !== 'groovy') {
+      return modConfig;
     }
+
+    if (modConfig.modResults.contents.includes(PBKDF2_EXT_MARKER)) {
+      return modConfig;
+    }
+
+    modConfig.modResults.contents += PBKDF2_EXT_BLOCK;
     return modConfig;
   });
 };

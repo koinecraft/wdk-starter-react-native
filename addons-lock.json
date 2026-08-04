@@ -1,11 +1,11 @@
 {
   "platform": "android",
-  "generatedAt": "2026-08-03T16:37:39.235Z",
+  "generatedAt": "2026-08-04T15:42:47.205Z",
   "addons": [
     {
       "name": "@buildonspark/spark-frost-bare-addon",
-      "version": "0.0.5",
-      "file": "libbuildonspark__spark-frost-bare-addon.0.0.5.so"
+      "version": "0.0.12",
+      "file": "libbuildonspark__spark-frost-bare-addon.0.0.12.so"
     },
     {
       "name": "bare-abort",
@@ -209,10 +209,10 @@
     }
   ],
   "files": [
-    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbuildonspark__spark-frost-bare-addon.0.0.5.so",
-    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbuildonspark__spark-frost-bare-addon.0.0.5.so",
-    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbuildonspark__spark-frost-bare-addon.0.0.5.so",
-    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbuildonspark__spark-frost-bare-addon.0.0.5.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbuildonspark__spark-frost-bare-addon.0.0.12.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbuildonspark__spark-frost-bare-addon.0.0.12.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbuildonspark__spark-frost-bare-addon.0.0.12.so",
+    "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86_64/libbuildonspark__spark-frost-bare-addon.0.0.12.so",
     "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/arm64-v8a/libbare-abort.2.0.13.so",
     "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/armeabi-v7a/libbare-abort.2.0.13.so",
     "node_modules/@spacesops/react-native-bare-kit/android/src/main/addons/x86/libbare-abort.2.0.13.so",

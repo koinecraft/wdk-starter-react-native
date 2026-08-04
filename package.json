@@ -24,7 +24,6 @@
     "verify-pear-addons": "node scripts/verify-pear-addons.mjs"
   },
   "dependencies": {
-    "@buildonspark/spark-frost-bare-addon": "0.0.5",
     "@craftzdog/react-native-buffer": "6.1.1",
     "@expo/vector-icons": "15.0.3",
     "@gorhom/bottom-sheet": "5.2.8",
@@ -33,7 +32,7 @@
     "@react-navigation/elements": "2.9.3",
     "@react-navigation/native": "7.1.26",
     "@reduxjs/toolkit": "2.11.2",
-    "@spacesops/wdk-react-native-core": "1.0.0-beta.46",
+    "@spacesops/wdk-react-native-core": "1.0.0-beta.52",
     "@tetherto/wdk-pricing-bitfinex-http": "^1.0.0-beta.1",
     "@tetherto/wdk-pricing-provider": "^1.0.0-beta.1",
     "@tetherto/wdk-uikit-react-native": "^1.0.0-beta.2",
@@ -121,7 +120,6 @@
   },
   "overrides": {
     "@spacesops/wdk-react-native-core": {
-      "@spacesops/react-native-bare-kit": "0.11.0-beta.44",
       "@tetherto/wdk-react-native-secure-storage": {
         "expo-crypto": "~15.0.9",
         "expo-local-authentication": "~17.0.8"
@@ -133,7 +131,6 @@
     },
     "expo-crypto": "~15.0.9",
     "expo-local-authentication": "~17.0.8",
-    "@spacesops/react-native-bare-kit": "0.11.0-beta.44",
     "bare-crypto": "1.12.0"
   }
 }

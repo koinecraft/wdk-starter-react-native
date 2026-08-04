@@ -1,4 +1,4 @@
-const { withAppBuildGradle } = require('@expo/config-plugins');
+const { withAppBuildGradle, withProjectBuildGradle } = require('@expo/config-plugins');
 
 const BARE_KEEP_DEBUG_SYMBOLS = `
     packaging {
@@ -13,8 +13,37 @@ const BARE_KEEP_DEBUG_SYMBOLS = `
     }
 `;
 
-const withBareKitAndroid = (config) =>
-  withAppBuildGradle(config, (modConfig) => {
+const PEAR_ALIAS_AFTER_LINK = `
+// Pear worklet bundle expects linked:lib*.so names from bare-pack; link.mjs writes current npm versions.
+gradle.projectsLoaded {
+  rootProject.subprojects { sub ->
+    sub.afterEvaluate {
+      if (!sub.name.contains('react-native-bare-kit')) return
+      def linkTask = sub.tasks.findByName('link')
+      if (linkTask == null) return
+      def aliasTask = sub.tasks.register('aliasPearLinkedAddons', Exec) {
+        workingDir rootProject.projectDir.parentFile
+        commandLine 'node', 'scripts/alias-pear-linked-addons.mjs'
+      }
+      linkTask.finalizedBy aliasTask
+    }
+  }
+}
+`;
+
+const withBareKitAndroid = (config) => {
+  config = withProjectBuildGradle(config, (modConfig) => {
+    if (modConfig.modResults.language !== 'groovy') {
+      return modConfig;
+    }
+    if (modConfig.modResults.contents.includes('aliasPearLinkedAddons')) {
+      return modConfig;
+    }
+    modConfig.modResults.contents += PEAR_ALIAS_AFTER_LINK;
+    return modConfig;
+  });
+
+  return withAppBuildGradle(config, (modConfig) => {
     if (modConfig.modResults.language !== 'groovy') {
       return modConfig;
     }
@@ -30,5 +59,6 @@ const withBareKitAndroid = (config) =>
 
     return modConfig;
   });
+};
 
 module.exports = withBareKitAndroid;

@@ -8,6 +8,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+// Gradle :react-native-bare-kit:link re-runs on every Android preBuild and drops pear aliases.
+await import('./alias-pear-linked-addons.mjs');
+
 const bundlePath = path.join(
   root,
   'node_modules/@spacesops/pear-wrk-wdk/generated/bundle/wdk-worklet.mobile.bundle.js'
