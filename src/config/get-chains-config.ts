@@ -40,6 +40,9 @@ type ChainConfig = {
   transferMaxFee?: number;
   network?: SparkNetworkMode | BitcoinNetworkMode;
   client?: BtcElectrumClientConfig;
+  /** BIP purpose: 84 → native SegWit (bc1q), 86 → Taproot (bc1p). Must match script_type. */
+  bip?: number;
+  script_type?: 'P2WPKH' | 'P2TR';
 };
 
 const parseBitcoinNetwork = (): BitcoinNetworkMode | undefined => {
@@ -109,16 +112,12 @@ const getChainsConfig = (sparkNetwork: SparkNetworkMode = 'MAINNET', networkMode
         },
       },
 
-      // For P2TR (Taproot) addresses (bc1p...), use BIP-86
-      // For P2WPKH (Native SegWit) addresses (bc1q...), use BIP-84
-      // Currently configured for P2TR wallet: bc1pcp2p7nzg8kknr42w6yel8k7hpy5tedjpacnwlvtfhzgmaq6u4qnq06nhac
-      // Derivation path format: m/{bip}'/{network}'/{account}'/{change}/{index}
-      // - For testnet (network='testnet'): m/86'/1'/0'/0/0 (first address)
-      // - For mainnet (network='bitcoin'): m/86'/0'/0'/0/0 (first address)
-      // bip: 86, // Use BIP86 for Taproot (m/86') addresses
-      // script_type: 'P2TR', // Use P2TR for Taproot addresses
-      // bip: 84, // Use BIP84 for native SegWit (m/84') addresses
-      // script_type: 'P2WPKH', // Use P2WPKH for native SegWit addresses
+      // Native SegWit (bc1q…): BIP-84 + P2WPKH — default for the starter template.
+      // Taproot (bc1p…): use bip: 86 and script_type: 'P2TR' instead (see Koine POC).
+      // Path: m/{bip}'/{coin_type}'/{account}'/{change}/{index}
+      //   mainnet: m/84'/0'/0'/0/0  |  testnet: m/84'/1'/0'/0/0
+      bip: 84,
+      script_type: 'P2WPKH',
     },
     ethereum: {
       chainId: 1,
